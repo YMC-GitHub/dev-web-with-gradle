@@ -24,6 +24,8 @@ git lfs track "*.fbx"
 
 #add files for class
 git lfs track "*.class"
+git lfs track "*.jar"
+git lfs track "*.war"
 
 #file-usage
 #./scripts/git-lfs.sh

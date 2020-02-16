@@ -1,5 +1,5 @@
-// tell gradle to make .exe file
-apply plugin: 'application'
+// tell gradle to make .war file for web
+apply plugin: 'war'
 
 // tell gradle where to file .jar package ?
 repositories {
@@ -11,17 +11,26 @@ repositories {
     maven {
         //如果目录中木有，则找url对应的maven仓库，下面是阿里的maven仓库，速度杠杆的。
         url "http://maven.aliyun.com/nexus/content/groups/public/"
+        //url "http://maven.oschina.net/content/groups/public/"
     }
-    //mavenCentral()    //如果都木有，则取maven的官方仓库吧，只是这个速度要看人品
+    jcenter() // 官方默认仓库，JCenter相比mavenCenter构件更多，性能也更好
+    mavenCentral()    //如果都木有，则取maven的官方仓库吧，只是这个速度要看人品
 }
 
 // tell gradle which his dep is ?
 dependencies {
     // use jar name=log4j version=1.2.17 to compile src file
-    compile 'log4j:log4j:1.2.17'
+    // compile 'log4j:log4j:1.2.17'
+    // use jar name=servlet-api version=2.5 to compile src file and not installing and getting.
+    providedCompile "javax.servlet:servlet-api:2.5"
     // use jar name=junit version=4.11 to compile test file
     testCompile 'junit:junit:4.11'
 }
 
-// tell gradle which entry class is?
-mainClassName = 'log.Hello' // here is src/main/java/log/Hello.class
+war {
+    //from 'src/rootContent' // adds a file-set to the root of the archive
+    //webInf { from 'src/additionalWebInf' } // adds a file-set to the WEB-INF dir.
+    //classpath fileTree('additionalLibs') // adds a file-set to the WEB-INF/lib dir.
+    //classpath configurations.moreLibs // adds a configuration to the WEB-INF/lib dir.
+    //webXml = file('src/someWeb.xml') // copies a file to WEB-INF/web.xml
+}

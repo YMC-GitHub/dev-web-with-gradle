@@ -1,4 +1,4 @@
-# dev-exe-with-gradle
+# dev-web-with-gradle
 
 ## desc
 
@@ -7,9 +7,13 @@
 - junit use to log
 
 ## some cmds
-```
+```sh
 # build
 gradle assemble
+
+# deploy
+# copy build/libs/*.war to webapp path in tomcat serve
+
 ```
 
 ## author
