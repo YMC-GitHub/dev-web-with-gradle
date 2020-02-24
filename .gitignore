@@ -4,3 +4,7 @@
 
 #.project
 #.classpath
+
+build/
+bin/
+secret/
